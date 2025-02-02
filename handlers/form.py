@@ -34,6 +34,9 @@ async def process_age(message: Message, state: FSMContext):
     if not message.text.isdigit():
         await message.answer("Введите число!")
         return
+    if int(message.text) > 130 and int(message.text) < 0:
+        await message.answer("Возраст не может быть больше 150 или меньше 0")
+        return
     
     await state.update_data(age=int(message.text))
     await state.set_state(Form.language)
